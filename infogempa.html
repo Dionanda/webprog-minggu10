@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi Kegempaan</title>
+</head>
+<body>
+
+    <div id="infogempa"><img src="img/loading.gif"></div>
+
+    <script>
+        const jsp = new XMLHttpRequest()
+        jsp.open("GET","https://infogempa.ptov.ga/8e289c87c7f90c5f070e63e6be58210f:8703c53419f9c9ae647adcba28f7cff4")
+        jsp.send()
+
+        jsp.onload = function(){
+            const myObj = JSON.parse(this.responseText)
+            let tx = myObj["Infogempa"]["gempa"]
+            // console.log(tx)
+            tx = "TGL: "+myObj["Infogempa"]["gempa"].Tanggal
+            tx += "<br>Jam: "+myObj["Infogempa"]["gempa"].Jam
+            tx += "<br>Wilayah: "+myObj["Infogempa"]["gempa"].Wilayah
+            tx += "<br>Potensi: "+myObj["Infogempa"]["gempa"].Potensi
+            tx += "<br>Magnitude: "+myObj["Infogempa"]["gempa"].Magnitude
+            tx += "<br>Kedalaman: "+myObj["Infogempa"]["gempa"].Kedalaman
+
+            document.getElementById("infogempa").innerHTML = tx
+        }
+
+    </script>
+    
+</body>
+</html>
